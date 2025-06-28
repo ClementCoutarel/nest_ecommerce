@@ -1,0 +1,20 @@
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "jrgrgy-(uèoe",
+  "email": "test@tesddgvdgft.com",
+  "password": "newsfeed"
+}
+###
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@tesddgvdgft.com",
+  "password": "newsfeed"
+}
+###

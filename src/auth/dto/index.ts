@@ -1,4 +1,4 @@
-import { IsEmail,  IsNumber, IsString } from "class-validator";
+import UserCreateDto from './CreateUser.dto';
 
 export enum Role {
     "Super Admin" = 1,
@@ -6,17 +6,3 @@ export enum Role {
     "User" = 3,
     "Guest" = 4,
 }
-
-export class CreateUserDto {
-    @IsString()
-    name: string;
-
-    @IsEmail()
-    email: string;
-
-    @IsString()
-    password: string;
-
-    @IsNumber()
-    role_id: Role;
-} 
