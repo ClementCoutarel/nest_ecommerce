@@ -4,7 +4,7 @@ import { UsersService } from '../users/users.service';
 import { compare } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { tokenPayload } from './interfaces/token-payload.interface';
+import { TokenPayload } from './interfaces/token-payload.interface';
 import { Response } from 'express';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class AuthService {
       expirationAccessToken.setMilliseconds(expirationAccessToken.getTime() + parseInt(
         this.configService.getOrThrow('JWT_EXPIRATION_TIME')
       ));
-      const tokenPayload: tokenPayload = {
+      const tokenPayload: TokenPayload = {
         userId: user.id.toString(),
       }
      const accessToken = this.jwtService.sign(tokenPayload,{
@@ -29,7 +29,7 @@ export class AuthService {
     response.cookie('Authentication', accessToken, {httpOnly: true, secure: this.configService.get('NODE_ENV')});
   }
 
-   async verifyUser( email: string, password: string ): Promise<User> {
+  async verifyUser( email: string, password: string ): Promise<User> {
       try {
         const user:User= await this.userService.getUserByEMail(email);
         const authenticated = await compare(password, user.password);

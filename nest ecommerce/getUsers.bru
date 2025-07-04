@@ -1,0 +1,15 @@
+meta {
+  name: getUsers
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3000/auth
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3IiwiaWF0IjoxNzUxNjQ1Nzc2LCJleHAiOjE3NTE2NDYxMzZ9.pxz9MEbZSxbtrRK1ZN3F5jEBiV7DpYPXQkjVEwaM8oI
+}

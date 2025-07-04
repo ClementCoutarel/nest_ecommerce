@@ -9,7 +9,11 @@ import { hash } from 'bcrypt';
 export class UsersService {
   constructor(@InjectRepository(User) private readonly usersRepository: Repository<User>,) {}
 
-   async getUser(id: number): Promise<User>   {
+  async getUsers(){
+    return this.usersRepository.query("SELECT id,name,email FROM users LIMIT 10");
+  }
+
+  async getUser(id: number): Promise<User>   {
     const user = await this.usersRepository.findOneBy({id})
      if (!user) {
        throw new NotFoundException(`User with id ${id} not found`);
@@ -30,7 +34,6 @@ export class UsersService {
       ...user,
       password: await hash(user.password, 8)
     });
-    console.log(result);
     if(!result){
       throw new NotFoundException(`User not created`);
     }
